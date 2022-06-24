@@ -9,6 +9,7 @@ import { todoAdded } from "./todoListSlice"
 export const AddTodoForm = () => {
 
     const [content, setContent] = useState('')
+    const [visibility, setVisibility] = useState('hidden') 
     
     const dispatch = useDispatch()
 
@@ -28,8 +29,12 @@ export const AddTodoForm = () => {
                 id="todoContent"
                 value={content}
                 onChange={onValueChanged}
+                onFocus={() => setVisibility('visible')}
+                onBlur={() => setVisibility('hidden')}
             />
             <button 
+                onMouseDown={(e) => e.preventDefault()}
+                style={{visibility: visibility}}
                 type="button"
                 onClick={onAddTodoClicked}
             >Add</button>
